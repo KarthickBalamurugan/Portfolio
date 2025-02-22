@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer utilities {
   .animate-slide-right {
     animation: slide-right 3s linear infinite;
