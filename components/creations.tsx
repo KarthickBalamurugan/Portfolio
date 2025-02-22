@@ -26,7 +26,7 @@ const projects: Project[] = [
   {
     title: "Portfolio",
     description: "Personal portfolio website",
-    image: "/portfolio.jpg",
+    image: "/portfolio.png",
     link: "https://portfolio.vercel.app",
     tech: ["Next.js", "Framer Motion", "GSAP"]
   }
