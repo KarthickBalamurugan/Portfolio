@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import Lenis from '@studio-freight/lenis';
+import Creations from '../components/creations';
 
 const raleway = Raleway({ subsets: ['latin'] });
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -15,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const textRef = useRef(null);
-  const menuRef = useRef(null);
+  // const menuRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const rotateX = useTransform(mouseY, [-500, 500], [5, -5]);
@@ -92,7 +93,7 @@ const HomePage = () => {
         <nav className="fixed top-0 w-full z-50 px-12 py-8">
           <div className="max-w-[1400px] mx-auto flex justify-between items-center">
             {/* Logo/Name */}
-            <a href="/" className="text-lg tracking-[0.2em] font-medium opacity-90 hover:opacity-100 transition-opacity">
+            <a href="https://www.google.com" className="text-lg tracking-[0.2em] font-medium opacity-90 hover:opacity-100 transition-opacity">
               KARTHICK GANESH
             </a>
 
@@ -172,7 +173,7 @@ const HomePage = () => {
           <div className="flex whitespace-nowrap">
             <div 
               ref={textRef}
-              className={`whitespace-nowrap text-[15vw] tracking-[-0.03em] opacity-[0.08] 
+              className={`absolute top-[10%] whitespace-nowrap text-[15vw] tracking-[-0.03em] opacity-[0.08] 
                          select-none transform-gpu inline-flex uppercase ${raleway.className}`}
                          
               style={{
@@ -190,7 +191,7 @@ const HomePage = () => {
             {/* Duplicate element for seamless loop */}
             <div 
               aria-hidden="true"
-              className={`whitespace-nowrap text-[15vw] tracking-[-0.03em] opacity-[0.08] 
+              className={`whitespace-nowrap absolute top-[10%] text-[15vw] tracking-[-0.03em] opacity-[0.08] 
                          select-none transform-gpu inline-flex uppercase ${raleway.className}`}
               style={{
                 WebkitTextStroke: '1.5px rgba(255,69,0,0.25)',
@@ -200,9 +201,9 @@ const HomePage = () => {
                 willChange: 'transform'
               }}
             >
+              {/* <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span>
               <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span>
-              <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span>
-              <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span>
+              <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span> */}
             </div>
           </div>
         </div>
@@ -266,51 +267,84 @@ const HomePage = () => {
           </div>
         </main>
 
-        {/* About Section with Highlight Effect */}
+        {/* About Section */}
         <section className="min-h-screen relative flex items-center justify-center">
-          {/* Background Blur Effect */}
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-md" />
+          {/* Gradient Background with Blur */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#ffffff05] via-[#00000080] to-black backdrop-blur-md" />
           
-          <div className="max-w-[1000px] mx-auto px-4 md:px-12 relative z-10">
-            <motion.p className="text-[#FF4500] uppercase tracking-[0.2em] mb-8 text-center">
-              About
-            </motion.p>
-            <div className="space-y-6">
-              {[
-                "I AM AN INDEPENDENT PROBLEM SOLVER",
-                "AND CREATIVE DESIGNER WITH A PASSION",
-                "FOR BUILDING INNOVATIVE DIGITAL",
-                "EXPERIENCES. SPECIALIZING IN WEB",
-                "DEVELOPMENT AND UI/UX DESIGN,",
-                "I BRING IDEAS TO LIFE WITH CODE",
-                "AND CREATIVITY."
-              ].map((line, index) => (
-                <motion.div
-                  key={index}
-                  className="overflow-hidden"
-                  initial={{ opacity: 0.1 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: false, amount: 0.8 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <h2 className="text-2xl md:text-4xl font-medium leading-tight tracking-tight text-center">
-                    {line}
-                  </h2>
-                </motion.div>
-              ))}
-            </div>
-            <div className="text-center mt-12">
-              <motion.button
-                className="px-8 py-4 bg-[#FF4500] rounded-full text-sm tracking-[0.2em] 
-                   hover:bg-[#FF6B00] transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          {/* Content Container with Local Blur */}
+          <div className="relative max-w-[1200px] mx-auto px-4 py-20">
+            <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-xl rounded-3xl" />
+            
+            <div className="relative z-10">
+              <motion.p 
+                className="text-[#FF4500] uppercase tracking-[0.2em] mb-16 text-center text-sm"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
               >
-                MORE ABOUT ME
-              </motion.button>
+                About
+              </motion.p>
+
+              <div className="text-center">
+                {[
+                  { text: "I AM AN INDEPENDENT PROBLEM SOLVER", delay: 0 },
+                  { text: "AND CREATIVE DESIGNER WITH A PASSION", delay: 0.1 },
+                  { text: "FOR BUILDING INNOVATIVE DIGITAL", delay: 0.2 },
+                  { text: "EXPERIENCES. SPECIALIZING IN WEB", delay: 0.3 },
+                  { text: "DEVELOPMENT AND UI/UX DESIGN,", delay: 0.4 },
+                  { text: "I BRING IDEAS TO LIFE WITH CODE", delay: 0.5 },
+                  { text: "AND CREATIVITY.", delay: 0.6 }
+                ].map(({ text, delay }, index) => (
+                  <motion.div
+                    key={index}
+                    className="overflow-hidden"
+                    initial={{ opacity: 0.1 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ 
+                      once: false,
+                      amount: "all",
+                      margin: "-10%" 
+                    }}
+                    transition={{ 
+                      duration: 1,
+                      delay,
+                      ease: [0.4, 0, 0.2, 1]
+                    }}
+                  >
+                    <h2 className="text-3xl md:text-[3.2rem] font-medium leading-[1.1] tracking-tight py-1"
+                        style={{ WebkitTextStroke: '0.5px rgba(255,255,255,0.5)' }}>
+                      {text}
+                    </h2>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div 
+                className="text-center mt-16"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+              >
+                <motion.button
+                  className="relative px-10 py-4 text-sm tracking-[0.2em] rounded-sm overflow-hidden
+                             bg-gradient-to-r from-[#FF4500] to-[#FF6B00] group
+                             shadow-[0_0_20px_rgba(255,69,0,0.3)] hover:shadow-[0_0_30px_rgba(255,69,0,0.5)]
+                             transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="relative z-10 font-medium">MORE ABOUT ME</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B00] to-[#FF4500] 
+                                 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-30 
+                                 bg-white transition-opacity duration-300" />
+                </motion.button>
+              </motion.div>
             </div>
           </div>
         </section>
+
+        <Creations />
       </div>
     </>
   );
