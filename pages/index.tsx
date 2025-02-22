@@ -172,7 +172,7 @@ const HomePage = () => {
           <div className="flex whitespace-nowrap">
             <div 
               ref={textRef}
-              className={`whitespace-nowrap text-[15vw] tracking-[-0.03em] opacity-[0.08] 
+              className={`absolute top-[10%] whitespace-nowrap text-[15vw] tracking-[-0.03em] opacity-[0.08] 
                          select-none transform-gpu inline-flex uppercase ${raleway.className}`}
                          
               style={{
@@ -190,7 +190,7 @@ const HomePage = () => {
             {/* Duplicate element for seamless loop */}
             <div 
               aria-hidden="true"
-              className={`whitespace-nowrap text-[15vw] tracking-[-0.03em] opacity-[0.08] 
+              className={`whitespace-nowrap absolute top-[10%] text-[15vw] tracking-[-0.03em] opacity-[0.08] 
                          select-none transform-gpu inline-flex uppercase ${raleway.className}`}
               style={{
                 WebkitTextStroke: '1.5px rgba(255,69,0,0.25)',
@@ -200,9 +200,9 @@ const HomePage = () => {
                 willChange: 'transform'
               }}
             >
+              {/* <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span>
               <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span>
-              <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span>
-              <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span>
+              <span>KARTHICK&nbsp;GANESH&nbsp;-&nbsp;</span> */}
             </div>
           </div>
         </div>
