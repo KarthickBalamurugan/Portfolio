@@ -8,6 +8,7 @@ import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import Lenis from '@studio-freight/lenis';
 import Creations from '../components/creations';
 import Capabilities from '../components/capabilities';
+import Footer from '../components/footer';
 
 const raleway = Raleway({ subsets: ['latin'] });
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -345,6 +346,7 @@ const HomePage = () => {
         </section>
         <Creations />
         <Capabilities />
+        <Footer />
       </div>
     </>
   );

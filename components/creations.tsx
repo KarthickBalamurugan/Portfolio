@@ -12,7 +12,7 @@ const projects: Project[] = [
   {
     title: "UnDebt",
     description: "A debt management and tracking application",
-    image: "/undebt.png",
+    image: "/Undebt.png",
     link: "https://undebt.vercel.app",
     tech: ["Next.js", "TypeScript", "Tailwind"]
   },
