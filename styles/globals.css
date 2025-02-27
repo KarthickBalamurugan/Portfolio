@@ -36,7 +36,7 @@ html {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 1px; /* Thinner scrollbar */
+  width: 8px; /* Thinner scrollbar */
 }
 
 ::-webkit-scrollbar-track {
@@ -46,6 +46,11 @@ html {
 ::-webkit-scrollbar-thumb {
   background: #FF4500;
   height: 30px; /* Even shorter scrollbar thumb */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6B00;
 }
 
 /* Hide scrollbar for cleaner look */
@@ -393,4 +398,72 @@ section {
 /* Smooth reveal transitions */
 .overflow-hidden {
   will-change: opacity;
+}
+
+/* Project card animations */
+.project-card-container {
+  perspective: 1000px;
+}
+
+.project-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Smooth scroll utilities */
+.scroll-container {
+  @apply overflow-hidden;
+  height: 100vh;
+  width: 100%;
+}
+
+.scroll-section {
+  position: relative;
+  will-change: transform;
+}
+
+/* Optimize performance */
+.backface-hidden {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .text-responsive {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .h-responsive {
+    height: clamp(300px, 60vh, 500px);
+  }
+}
+
+/* Enhanced mobile menu */
+@media (max-width: 640px) {
+  .menu-overlay {
+    backdrop-filter: blur(12px);
+  }
+
+  .mobile-menu-item {
+    font-size: 1.5rem;
+    padding: 0.75rem 0;
+  }
+}
+
+/* Improved touch interactions */
+@media (hover: none) {
+  .hover\:scale-110:hover {
+    transform: none;
+  }
+  
+  .touch-action-none {
+    touch-action: none;
+  }
 }

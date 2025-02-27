@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import Lenis from '@studio-freight/lenis';
 import Creations from '../components/creations';
+import Capabilities from '../components/capabilities';
 
 const raleway = Raleway({ subsets: ['latin'] });
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -89,11 +90,11 @@ const HomePage = () => {
       </Head>
       <div className={`min-h-screen bg-[#0A0A0A] text-white relative overflow-hidden ${montserrat.className}`}>
         {/* Updated Navbar */}
-        <nav className="fixed top-0 w-full z-50 px-12 py-8">
+        <nav className="fixed top-0 w-full z-50 px-4 md:px-12 py-4 md:py-8">
           <div className="max-w-[1400px] mx-auto flex justify-between items-center">
             {/* Logo/Name */}
-            <a href="/" className="text-lg tracking-[0.2em] font-medium opacity-90 hover:opacity-100 transition-opacity">
-              KARTHICK GANESH
+            <a href="/" className="text-sm md:text-lg tracking-[0.2em] font-medium opacity-90 hover:opacity-100 transition-opacity">
+              KARTHICK
             </a>
 
             {/* Centered Menu/Close Button */}
@@ -118,7 +119,7 @@ const HomePage = () => {
             </div>
 
             {/* Contact Link */}
-            <a href="/contact" className="text-sm tracking-[0.2em] font-medium hover:text-[#FF4500] transition-colors">
+            <a href="/contact" className="text-xs md:text-sm tracking-[0.2em] font-medium hover:text-[#FF4500] transition-colors">
               CONTACT
             </a>
           </div>
@@ -172,7 +173,7 @@ const HomePage = () => {
           <div className="flex whitespace-nowrap">
             <div 
               ref={textRef}
-              className={`absolute top-[8%] whitespace-nowrap text-[15vw] tracking-[-0.03em] opacity-[0.08] 
+              className={`absolute top-[8%] whitespace-nowrap text-[12vw] md:text-[15vw] tracking-[-0.03em] opacity-[0.08] 
                          select-none transform-gpu inline-flex uppercase ${raleway.className}`}
                          
               style={{
@@ -208,10 +209,10 @@ const HomePage = () => {
         </div>
 
         {/* Main Content */}
-        <main className="min-h-screen flex flex-col items-center justify-center relative">
+        <main className="min-h-screen flex flex-col items-center justify-center relative px-4 md:px-0">
           {/* Profile Image Container */}
           <motion.div 
-            className="relative w-[300px] md:w-[400px] h-[400px] md:h-[500px] z-20 
+            className="relative w-[280px] h-[350px] md:w-[400px] md:h-[500px] z-20 
                       group rounded-sm transform perspective-100"
             style={{
               rotateX,
@@ -258,21 +259,21 @@ const HomePage = () => {
           </motion.div>
 
           {/* Tagline */}
-          <div className="mt-16 text-center relative z-30">
-            <h2 className="text-base tracking-[0.2em] font-medium leading-relaxed opacity-90">
-              AN INDEPENDENT PROBLEM SOLVER && <br />
-              CREATIVE DESIGNER BASED IN INDIA
+          <div className="mt-8 md:mt-16 text-center relative z-30">
+            <h2 className="text-sm md:text-base tracking-[0.2em] font-medium leading-relaxed opacity-90">
+            A DIGITAL ADVENTURER CRAFTING <br className="hidden md:block"/>
+            WEB WORLDS WITH CODE AND CREATIVITY
             </h2>
           </div>
         </main>
 
         {/* About Section */}
-        <section className="min-h-screen relative flex items-center justify-center">
+        <section className="min-h-screen relative flex items-center justify-center px-4 md:px-0">
           {/* Gradient Background with Blur */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#ffffff05] via-[#00000080] to-black backdrop-blur-md" />
           
           {/* Content Container with Local Blur */}
-          <div className="relative max-w-[1200px] mx-auto px-4 py-20">
+          <div className="relative max-w-[1200px] mx-auto px-4 py-12 md:py-20">
             <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-xl rounded-3xl" />
             
             <div className="relative z-10">
@@ -310,7 +311,7 @@ const HomePage = () => {
                       ease: [0.4, 0, 0.2, 1]
                     }}
                   >
-                    <h2 className="text-3xl md:text-[3.2rem] font-medium leading-[1.1] tracking-tight py-1"
+                    <h2 className="text-2xl md:text-[3.2rem] font-medium leading-[1.2] md:leading-[1.1] tracking-tight py-1"
                         style={{ WebkitTextStroke: '0.5px rgba(255,255,255,0.5)' }}>
                       {text}
                     </h2>
@@ -342,8 +343,8 @@ const HomePage = () => {
             </div>
           </div>
         </section>
-
         <Creations />
+        <Capabilities />
       </div>
     </>
   );
