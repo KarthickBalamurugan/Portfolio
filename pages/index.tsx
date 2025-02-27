@@ -94,7 +94,7 @@ const HomePage = () => {
           <div className="max-w-[1400px] mx-auto flex justify-between items-center">
             {/* Logo/Name */}
             <a href="/" className="text-sm md:text-lg tracking-[0.2em] font-medium opacity-90 hover:opacity-100 transition-opacity">
-              KARTHICK
+              KARTHICK GANESH
             </a>
 
             {/* Centered Menu/Close Button */}
@@ -246,7 +246,7 @@ const HomePage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 
                              opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
               <Image
-                src="/animekarthick.jpg"
+                src="/Mainpfp.jpg"
                 alt="Profile"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
