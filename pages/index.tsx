@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const textRef = useRef(null);
-  // const menuRef = useRef(null);
+  const menuRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const rotateX = useTransform(mouseY, [-500, 500], [5, -5]);
@@ -27,7 +27,6 @@ const HomePage = () => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      // smooth: true
     });
 
     // Integrate Lenis with GSAP
@@ -93,7 +92,7 @@ const HomePage = () => {
         <nav className="fixed top-0 w-full z-50 px-12 py-8">
           <div className="max-w-[1400px] mx-auto flex justify-between items-center">
             {/* Logo/Name */}
-            <a href="https://www.google.com" className="text-lg tracking-[0.2em] font-medium opacity-90 hover:opacity-100 transition-opacity">
+            <a href="/" className="text-lg tracking-[0.2em] font-medium opacity-90 hover:opacity-100 transition-opacity">
               KARTHICK GANESH
             </a>
 
@@ -173,7 +172,7 @@ const HomePage = () => {
           <div className="flex whitespace-nowrap">
             <div 
               ref={textRef}
-              className={`absolute top-[10%] whitespace-nowrap text-[15vw] tracking-[-0.03em] opacity-[0.08] 
+              className={`absolute top-[8%] whitespace-nowrap text-[15vw] tracking-[-0.03em] opacity-[0.08] 
                          select-none transform-gpu inline-flex uppercase ${raleway.className}`}
                          
               style={{
@@ -246,7 +245,7 @@ const HomePage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 
                              opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
               <Image
-                src="/pfp1.jpg"
+                src="/animekarthick.jpg"
                 alt="Profile"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
