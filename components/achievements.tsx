@@ -3,27 +3,27 @@ import { motion, useScroll, useSpring, useTransform, useVelocity } from 'framer-
 
 const achievements = [
   {
+    year: "2025",
+    title: "Envision Hackathon",
+    description: "Secured Runner Up position in the Envision Hackathon, demonstrating innovative problem-solving and technical expertise.",
+    link: "#"
+  },
+  {
+    year: "2024",
+    title: "SSN INVENTE Symposium",
+    description: "Achieved Runner Up position at the SSN INVENTE National Level Technical Symposium, demonstrating technical excellence.",
+    link: "#"
+  },
+  {
     year: "2023",
-    title: "Achievement Title 1",
-    description: "Description of the achievement goes here. This can be multiple lines long and will adapt to the content.",
+    title: "IETE Best Project Award",
+    description: "Received the Best Project Award at IETE for outstanding technical implementation and innovation.",
     link: "#"
   },
   {
-    year: "2022",
-    title: "Achievement Title 2",
-    description: "Another significant milestone or achievement description.",
-    link: "#"
-  },
-  {
-    year: "2021",
-    title: "Achievement Title 3",
-    description: "More details about your achievements and accomplishments.",
-    link: "#"
-  },
-  {
-    year: "2020",
-    title: "Achievement Title 4",
-    description: "You can add as many achievements as you want, the timeline will scroll smoothly.",
+    year: "2023",
+    title: "SVCE Paper Presentation",
+    description: "Won First Place in the Technical Paper Presentation competition at SVCE, showcasing research and presentation skills.",
     link: "#"
   }
 ];
