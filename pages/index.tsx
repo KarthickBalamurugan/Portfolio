@@ -347,9 +347,9 @@ const HomePage = () => {
         </section>
         <Creations />
         <Capabilities />
+        {/* <Footer /> */}
         <Achievement />
         <Footer />
-        {/* <Achievement /> */}
       </div>
     </>
   );

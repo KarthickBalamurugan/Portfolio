@@ -45,7 +45,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <div className="relative py-20 bg-[#0A0A0A] pt-[854px]">
+    <footer className="relative pt-0 pb-8 px-4 md:px-12"> {/* Removed top padding */}
       <div className="max-w-[1400px] mx-auto px-4 md:px-12">
         {/* Upper Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-16">
@@ -121,7 +121,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
