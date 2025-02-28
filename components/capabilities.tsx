@@ -1,126 +1,16 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
-
-interface SkillCard {
-  title: string;
-  skills: string[];
-  finalRotation: number;
-}
-
-const skillCards: SkillCard[] = [
-  {
-    title: "Development",
-    skills: ["Frontend", "Deployment", "Analysis", "Backend"],
-    finalRotation: -25
-  },
-  {
-    title: "Languages",
-    skills: ["Java", "Python", "JavaScript", "C"],
-    finalRotation: 25
-  },
-  {
-    title: "Strategy",
-    skills: ["Analysis", "Designer", "Optimizer"],
-    finalRotation: -15
-  },
-  {
-    title: "Framework",
-    skills: ["React", "Next.js", "Keras", "Flask"],
-    finalRotation: 15
-  }
+import { motion } from 'framer-motion';
+const skills = [
+  { title: "DEVELOPMENT", details: ["FRONTEND", "ANALYSIS", "BACKEND", "DEPLOYMENT"] },
+  // { title: "STRATEGY", details: ["", "ANALYSIS", "DESIGNER", "OPTIMIZATION"] },
+  { title: "LANGUAGES", details: ["JAVA", "PYTHON", "JAVASCRIPT", "C"] },
+  { title: "FRAMEWORK", details: ["NEXTJS", "TAILWIND", "KERAS", "TAILWIND"] },
 ];
-
-const CardStack = () => {
-  const { scrollY } = useScroll();
-
-  return (
-    <div className="h-screen w-full flex items-center justify-center perspective-1000">
-      <div className="relative w-[300px] h-[400px]">
-        {skillCards.map((card, index) => {
-          // Dynamic motion values based on scroll
-          const cardSpread = useTransform(
-            scrollY,
-            [0, 500], // Adjust these values to control spread timing
-            [0, index % 2 === 0 ? -400 : 400] // Alternate left/right spread
-          );
-
-          const ySpread = useTransform(
-            scrollY,
-            [0, 500],
-            [0, index < 2 ? -200 : 200] // Top/bottom spread
-          );
-
-          const rotation = useTransform(
-            scrollY,
-            [0, 500],
-            [0, card.finalRotation]
-          );
-
-          const flip = useTransform(
-            scrollY,
-            [200, 400], // Adjust flip timing
-            [0, 180]
-          );
-
-          return (
-            <motion.div
-              key={card.title}
-              className="absolute inset-0"
-              style={{
-                x: cardSpread,
-                y: ySpread,
-                rotateZ: rotation,
-                zIndex: skillCards.length - index,
-              }}
-            >
-              <motion.div
-                className="w-full h-full"
-                style={{
-                  rotateY: flip,
-                  transformStyle: 'preserve-3d'
-                }}
-              >
-                {/* Card Back */}
-                <div className="absolute inset-0 backface-hidden bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] rounded-xl border border-white/10">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-[#FF4500] to-[#FF6B00]" />
-                  </div>
-                </div>
-
-                {/* Card Front */}
-                <div 
-                  className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#FF4500]/10 to-[#FF6B00]/10 
-                           backdrop-blur-md border border-white/10 p-6 [transform:rotateY(180deg)] backface-hidden"
-                >
-                  <h3 className="text-2xl font-bold mb-4 text-[#FF4500]">{card.title}</h3>
-                  <div className="space-y-3">
-                    {card.skills.map((skill, idx) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: idx * 0.1 }}
-                        className="flex items-center space-x-2"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF4500]" />
-                        <span className="text-white/80">{skill}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
 
 const Capabilities = () => {
   return (
-    <section className="relative py-0 min-h-[200vh]"> {/* Increased height for scroll */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-12 pt-8 md:pt-16">
+    <>
+    <section className="relative min-h-screen">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-12 pt-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div className="w-full md:w-2/3">
             <motion.p 
@@ -182,15 +72,30 @@ const Capabilities = () => {
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.1, 1, 0.3, 1] }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
-
-      {/* Card Stack Container */}
-      <div className="sticky top-0 h-screen">
-        <CardStack />
-      </div>
     </section>
+    <section className='flex items-center justify-between flex-col '>
+      {skills && skills.map((items,index)=>(
+        <div className='h-full absolute'>
+        <div key={index} className='bg-[#131313] p-4 rounded-lg absolute h-[654px] w-[435px] z-0'>
+          <div className='text-2xl'>{items.title}</div>
+          <div className='text-center  mt-3 justify-around'>{items.details.map((item,index)=>(
+            <>
+              <div key={index} className='mb-2 mt-2'>
+                {item}
+              
+              </div>
+              <hr className="border-t border-dotted border-gray-700"/>
+            </>
+          ))}</div>
+        </div>
+        <img src="./Skills.png" alt="" className='z-50 relative'/>
+        </div>
+      ))}
+    </section>
+    </>
   );
 };
 
