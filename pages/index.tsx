@@ -9,6 +9,7 @@ import Lenis from '@studio-freight/lenis';
 import Creations from '../components/creations';
 import Capabilities from '../components/capabilities';
 import Footer from '../components/footer';
+import Achievement from '../components/achievements';
 
 const raleway = Raleway({ subsets: ['latin'] });
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -174,7 +175,7 @@ const HomePage = () => {
           <div className="flex whitespace-nowrap">
             <div 
               ref={textRef}
-              className={`absolute top-[8%] whitespace-nowrap text-[12vw] md:text-[15vw] tracking-[-0.03em] opacity-[0.08] 
+              className={`absolute top-[5%] whitespace-nowrap text-[12vw] md:text-[15vw] tracking-[-0.03em] opacity-[0.08] 
                          select-none transform-gpu inline-flex uppercase ${raleway.className}`}
                          
               style={{
@@ -346,7 +347,9 @@ const HomePage = () => {
         </section>
         <Creations />
         <Capabilities />
+        <Achievement />
         <Footer />
+        {/* <Achievement /> */}
       </div>
     </>
   );
