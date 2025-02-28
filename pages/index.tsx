@@ -20,7 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
 const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const textRef = useRef(null);
-  const menuRef = useRef(null);
+  // const menuRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const rotateX = useTransform(mouseY, [-500, 500], [5, -5]);
