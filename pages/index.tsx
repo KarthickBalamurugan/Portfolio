@@ -10,6 +10,7 @@ import Creations from '../components/creations';
 import Capabilities from '../components/capabilities';
 import Footer from '../components/footer';
 import Achievement from '../components/achievements';
+import Link from 'next/link';
 
 const raleway = Raleway({ subsets: ['latin'] });
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -121,9 +122,15 @@ const HomePage = () => {
             </div>
 
             {/* Contact Link */}
-            <a href="/contact" className="text-xs md:text-sm tracking-[0.2em] font-medium hover:text-[#FF4500] transition-colors">
-              CONTACT
-            </a>
+            <Link 
+              href="/contact" 
+              passHref
+              legacyBehavior
+            >
+              <a className="text-xs md:text-sm tracking-[0.2em] font-medium hover:text-[#FF4500] transition-colors">
+                CONTACT
+              </a>
+            </Link>
           </div>
 
           {/* Menu Overlay */}
@@ -145,7 +152,6 @@ const HomePage = () => {
               <div className="text-center space-y-6">
                 {[
                   { title: 'HOME', href: '/' },
-                  { title: 'ABOUT ME', href: '/about' },
                   { title: 'PROJECTS', href: '/projects' },
                   { title: 'CONTACT', href: '/contact' }
                 ].map((item, index) => (
@@ -347,7 +353,6 @@ const HomePage = () => {
         </section>
         <Creations />
         <Capabilities />
-        {/* <Footer /> */}
         <Achievement />
         <Footer />
       </div>

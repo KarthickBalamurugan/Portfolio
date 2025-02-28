@@ -11,7 +11,6 @@ const raleway = Raleway({
 
 const navLinks = [
   { name: 'HOME', href: '/' },
-  { name: 'ABOUT', href: '/about' },
   { name: 'PROJECTS', href: '/projects' },
   { name: 'CONTACT', href: '/contact' }
 ];
@@ -74,12 +73,13 @@ const Footer = () => {
         {/* Divider Line */}
         <div className="w-full h-[1px] bg-white/10 mb-12" />
 
-        {/* Social Links and Copyright */}
+        {/* Social Links and Copyright - Fixed Structure */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-16">
           <p className="text-white/40 text-xs tracking-wider order-2 md:order-1 mt-8 md:mt-0">
             ALL RIGHTS RESERVED © 2025
           </p>
 
+          {/* Fixed social links container */}
           <div className="flex flex-wrap gap-8 order-1 md:order-2">
             {socialLinks.map((social) => (
               <a

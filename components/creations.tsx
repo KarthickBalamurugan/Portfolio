@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { BackgroundGradient } from './UI/backgroundgradient';
 import BackgroundGradientDemo from './achievements';
+import Link from 'next/link';
+
 interface Project {
   title: string;
   description: string;
@@ -14,21 +16,21 @@ const projects: Project[] = [
     title: "UnDebt",
     description: "A debt management and tracking application",
     image: "/Undebt.png",
-    link: "https://undebt.vercel.app",
+    link: "/projects/undebt",
     tech: ["Next.js", "TypeScript", "Tailwind"]
   },
   {
     title: "DigiWallet",
     description: "Personal finance management platform",
     image: "/wallet.png",
-    link: "https://wallet.vercel.app",
+    link: "/projects/digiwallet", // Updated to internal route
     tech: ["React", "Node.js", "MongoDB"]
   },
   {
     title: "Portfolio",
     description: "Personal portfolio website",
     image: "/portfolio.png",
-    link: "https://portfolio.vercel.app",
+    link: "/projects/portfolio", // Updated to internal route
     tech: ["Next.js", "Framer Motion", "GSAP"]
   }
 ];
@@ -99,15 +101,19 @@ const Creations = () => {
 
       <div className="relative max-w-[1400px] mx-auto">
         {projects.map((project) => (
-          <motion.div
+          <Link 
             key={project.title}
-            className="sticky top-0 h-screen flex items-center px-4 md:px-12 will-change-transform"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.7 }}
+            href={project.link}
+            className="block" // Added for better touch targets
           >
-            <BackgroundGradient className="rounded-[22px] w-[90vw] p-4 sm:p-10 bg-white dark:bg-zinc-900">
+            <motion.div
+              className="sticky top-0 h-screen flex items-center px-4 md:px-12 will-change-transform"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.7 }}
+            >
+              <BackgroundGradient className="rounded-[22px] w-[90vw] p-4 sm:p-10 bg-white dark:bg-zinc-900">
             <div className="w-full h-[70vh] relative rounded-lg overflow-hidden backface-hidden">
               <div className="absolute inset-0 bg-white/[0.05] backdrop-blur-lg" />
 
@@ -154,7 +160,8 @@ const Creations = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
             </div>
             </BackgroundGradient>
-          </motion.div>
+            </motion.div>
+          </Link>
         ))}
       </div>
       {/* <BackgroundGradientDemo /> */}
