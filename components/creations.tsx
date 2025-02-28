@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { BackgroundGradient } from './UI/backgroundgradient';
-import BackgroundGradientDemo from './achievements';
 import Link from 'next/link';
 
 interface Project {
