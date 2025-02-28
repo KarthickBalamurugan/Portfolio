@@ -115,7 +115,7 @@ const Footer = () => {
                 width: '100%'
               }}
             >
-              <span>KARTHICK</span>
+              <span>KARTHICK </span>
               <span>GANESH</span>
             </h1>
           </div>
