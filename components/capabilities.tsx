@@ -1,15 +1,34 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from "framer-motion";
 const skills = [
   { title: "DEVELOPMENT", details: ["FRONTEND", "ANALYSIS", "BACKEND", "DEPLOYMENT"] },
   // { title: "STRATEGY", details: ["", "ANALYSIS", "DESIGNER", "OPTIMIZATION"] },
   { title: "LANGUAGES", details: ["JAVA", "PYTHON", "JAVASCRIPT", "C"] },
   { title: "FRAMEWORK", details: ["NEXTJS", "TAILWIND", "KERAS", "TAILWIND"] },
 ];
-
 const Capabilities = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  // Calculate spread positions for cards based on index
+  const getTransform = (index: number) => {
+    const totalCards = skills.length;
+    const spreadPercentage = 100 / totalCards;
+    const targetPosition = index * spreadPercentage;
+    
+    return useTransform(
+      scrollYProgress,
+      [0, 1],
+      ["50%", `${targetPosition}%`]
+    );
+  };
+
   return (
     <>
-    <section className="relative min-h-screen">
+    <section className="relative" ref={containerRef}>
       <div className="max-w-[1400px] mx-auto px-4 md:px-12 pt-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div className="w-full md:w-2/3">
@@ -76,25 +95,36 @@ const Capabilities = () => {
         />
       </div>
     </section>
-    <section className='flex items-center justify-between flex-col '>
-      {skills && skills.map((items,index)=>(
-        <div className='h-full absolute'>
-        <div key={index} className='bg-[#131313] p-4 rounded-lg absolute h-[654px] w-[435px] z-0'>
-          <div className='text-2xl'>{items.title}</div>
-          <div className='text-center  mt-3 justify-around'>{items.details.map((item,index)=>(
-            <>
-              <div key={index} className='mb-2 mt-2'>
-                {item}
-              
+    <section 
+        ref={containerRef}
+        className='min-h-screen relative flex items-center justify-center py-20'
+      >
+        <div className='w-full mx-auto relative'>
+          {skills.map((items, index) => (
+            <motion.div
+              key={index}
+              className='absolute top-0 transform '
+              style={{
+                left: getTransform(index),
+                transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              <div className='bg-[#131313] p-4 rounded-lg w-full z-0 absolute'>
+                <div className='text-2xl mb-4'>{items.title}</div>
+                <div className='flex flex-col gap-2'>
+                  {items.details.map((item, idx) => (
+                    <div key={idx}>
+                      <div className='py-2'>{item}</div>
+                      <hr className="border-t border-dotted border-gray-700"/>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <hr className="border-t border-dotted border-gray-700"/>
-            </>
-          ))}</div>
+              <img src="./Skills.png" alt="" className='w-full mt-4'/>
+            </motion.div>
+          ))}
         </div>
-        <img src="./Skills.png" alt="" className='z-50 relative'/>
-        </div>
-      ))}
-    </section>
+      </section>
     </>
   );
 };

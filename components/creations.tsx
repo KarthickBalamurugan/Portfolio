@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-
+import { BackgroundGradient } from './UI/backgroundgradient';
+import BackgroundGradientDemo from './achievements';
 interface Project {
   title: string;
   description: string;
@@ -17,9 +18,9 @@ const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind"]
   },
   {
-    title: "Wallet",
+    title: "DigiWallet",
     description: "Personal finance management platform",
-    image: "/wallet.jpg",
+    image: "/wallet.png",
     link: "https://wallet.vercel.app",
     tech: ["React", "Node.js", "MongoDB"]
   },
@@ -34,6 +35,7 @@ const projects: Project[] = [
 
 const Creations = () => {
   return (
+    
     <section className="min-h-screen relative">
       <div className="max-w-[1400px] mx-auto px-4 md:px-12 pt-32">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
@@ -105,8 +107,9 @@ const Creations = () => {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7 }}
           >
+            <BackgroundGradient className="rounded-[22px] w-[90vw] p-4 sm:p-10 bg-white dark:bg-zinc-900">
             <div className="w-full h-[70vh] relative rounded-lg overflow-hidden backface-hidden">
-              <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-xl" />
+              <div className="absolute inset-0 bg-white/[0.05] backdrop-blur-lg" />
 
               <motion.div 
                 className="absolute inset-0 will-change-transform"
@@ -118,7 +121,7 @@ const Creations = () => {
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover opacity-40"
+                  className="w-full h-full object-cover opacity-60"
                 />
               </motion.div>
 
@@ -129,17 +132,17 @@ const Creations = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  <h3 className="text-2xl md:text-4xl font-medium mb-3 md:mb-4">
+                  <h3 className="text-2xl md:text-4xl font-medium mb-3 md:mb-4 text-white">
                     {project.title}
                   </h3>
-                  <p className="text-base md:text-lg text-white/70 max-w-xl mb-6 md:mb-8">
+                  <p className="text-base md:text-lg text-white/90 max-w-xl mb-6 md:mb-8">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-3 md:gap-4">
                     {project.tech.map((tech) => (
                       <span 
                         key={tech}
-                        className="px-3 py-1 md:px-4 md:py-2 bg-white/5 backdrop-blur-sm rounded-full text-sm border border-white/10"
+                        className="px-3 py-1 md:px-4 md:py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20"
                       >
                         {tech}
                       </span>
@@ -148,12 +151,13 @@ const Creations = () => {
                 </motion.div>
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
             </div>
+            </BackgroundGradient>
           </motion.div>
         ))}
       </div>
-
+      {/* <BackgroundGradientDemo /> */}
       <style jsx>{`
         @media (max-width: 768px) {
           h2 {
