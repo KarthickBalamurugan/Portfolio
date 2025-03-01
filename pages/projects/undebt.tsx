@@ -95,7 +95,7 @@ const UndebtProject = () => {
                       The primary goal of Undebt is to empower users with the tools and insights needed to make informed decisions 
                       about their loan repayment strategies. By providing clear visualizations and multiple repayment scenarios, 
                       users can understand the impact of different payment approaches on their financial future. The platform aims 
-                      to reduce the complexity of loan management while offering flexible solutions that adapt to each user's unique 
+                      to reduce the complexity of loan management while offering flexible solutions that adapt to each users unique 
                       financial situation.
                     </p>
                   </div>

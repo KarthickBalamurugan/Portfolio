@@ -126,8 +126,8 @@ const Creations = () => {
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover opacity-60"
-                />
+                  className="w-full h-full object-cover opacity-60">
+                </img>
               </motion.div>
 
               <div className="relative h-full flex flex-col justify-end p-6 md:p-12">

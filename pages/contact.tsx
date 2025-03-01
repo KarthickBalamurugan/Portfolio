@@ -53,10 +53,7 @@ const ContactPage = () => {
             href="/karthick.pdf"
             download="karthick.pdf"
             className="absolute right-8 md:right-20 top-0 text-2xl font-medium tracking-tight text-white/90 hover:text-[#FF4500] transition-colors"
-            onClick={(e) => {
-              // Optional: Add analytics or tracking
-              console.log('CV Downloaded');
-            }}
+            
           >
             DOWNLOAD CV
           </a>

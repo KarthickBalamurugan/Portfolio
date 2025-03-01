@@ -1,5 +1,5 @@
-import { useRef, useEffect } from 'react';
-import { motion, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 
 const achievements = [
   {
@@ -27,6 +27,117 @@ const achievements = [
     link: "#"
   }
 ];
+
+// Separate TimelineItem component
+const TimelineItem = ({ achievement, index }: { achievement: any, index: number }) => {
+  const itemRef = useRef(null);
+  const { scrollYProgress: itemProgress } = useScroll({
+    target: itemRef,
+    offset: ["start end", "center center"]
+  });
+
+  const springY = useSpring(useTransform(itemProgress, [0, 1], [50, 0]), {
+    stiffness: 100,
+    damping: 30
+  });
+
+  const opacity = useTransform(itemProgress, 
+    [0, 0.2, 0.8, 1], 
+    [0.3, 1, 1, 0.3]
+  );
+
+  const dotGlow = useTransform(
+    itemProgress,
+    [0, 0.5, 1],
+    [0, 1, 0]
+  );
+
+  return (
+    <motion.div
+      ref={itemRef}
+      className="relative mb-24 last:mb-0 pt-8"
+      style={{ opacity }}
+    >
+      <motion.div 
+        className="absolute left-4 md:left-1/2 w-5 h-5 bg-[#1a1a1a] rounded-full -translate-x-[10px]
+                  border-2 border-[#FF4500] transition-all duration-300"
+        style={{
+          boxShadow: useTransform(
+            dotGlow,
+            [0, 1],
+            ['0 0 0px rgba(255,69,0,0)', '0 0 30px rgba(255,69,0,0.8)']
+          ),
+          borderColor: useTransform(
+            dotGlow,
+            [0, 1],
+            ['rgba(255,69,0,0.5)', 'rgba(255,69,0,1)']
+          )
+        }}
+      >
+        <motion.div 
+          className="absolute inset-[-4px] rounded-full"
+          style={{
+            background: "linear-gradient(to right, #FF4500, #FF8C00)",
+            opacity: dotGlow
+          }}
+        />
+      </motion.div>
+
+      <div className={`ml-12 md:ml-0 md:w-[calc(50%-32px)] ${
+        index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto md:pl-32'
+      }`}>
+        <motion.div
+          className="bg-[#1a1a1a] rounded-xl p-8 border border-white/10 relative overflow-hidden
+                    backdrop-blur-sm hover:bg-[#222] transition-all duration-300 group min-h-[250px]
+                    shadow-[0_0_25px_-5px_rgba(255,255,255,0.05)]"
+          style={{
+            y: springY,
+            x: useTransform(itemProgress, 
+              [0, 1], 
+              [index % 2 === 0 ? -30 : 30, 0]
+            )
+          }}
+          whileHover={{ 
+            scale: 1.03,
+            boxShadow: "0 20px 40px -20px rgba(255,255,255,0.1)"
+          }}
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <span className="px-4 py-2 rounded-full text-sm bg-[#FF4500]/10 text-[#FF4500] font-medium
+                           border border-[#FF4500]/20">
+              {achievement.year}
+            </span>
+            <div className="h-[1px] flex-1 bg-gradient-to-r from-[#FF4500]/20 to-transparent" />
+          </div>
+          
+          <h3 className="text-2xl font-semibold mb-4 text-white">
+            {achievement.title}
+          </h3>
+          
+          <p className="text-gray-300 text-base leading-relaxed mb-6">
+            {achievement.description}
+          </p>
+
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-[#FF4500]/10 to-transparent opacity-0 
+                      group-hover:opacity-100 transition-opacity duration-500"
+          />
+          
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 h-[2px]"
+            initial={{ scaleX: 0 }}
+            whileHover={{ scaleX: 1 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              background: "linear-gradient(to right, #FF4500, #FF8C00)",
+              originX: index % 2 === 0 ? 0 : 1
+            }}
+          />
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
 
 const Achievement = () => {
   const containerRef = useRef(null);
@@ -107,123 +218,13 @@ const Achievement = () => {
           </div>
 
           <div className="relative pt-8">
-            {achievements.map((achievement, index) => {
-              const itemRef = useRef(null);
-              const { scrollYProgress: itemProgress } = useScroll({
-                target: itemRef,
-                offset: ["start end", "center center"]
-              });
-
-              // Smooth spring animation for each item
-              const springY = useSpring(useTransform(itemProgress, [0, 1], [50, 0]), {
-                stiffness: 100,
-                damping: 30
-              });
-
-              const opacity = useTransform(itemProgress, 
-                [0, 0.2, 0.8, 1], 
-                [0.3, 1, 1, 0.3]
-              );
-
-              // Calculate when dot should glow
-              const dotGlow = useTransform(
-                itemProgress,
-                [0, 0.5, 1],
-                [0, 1, 0]
-              );
-
-              return (
-                <motion.div
-                  key={index}
-                  ref={itemRef}
-                  className="relative mb-24 last:mb-0 pt-8" // Increased vertical spacing
-                  style={{ opacity }}
-                >
-                  {/* Timeline node with orange glow restored */}
-                  <motion.div 
-                    className="absolute left-4 md:left-1/2 w-5 h-5 bg-[#1a1a1a] rounded-full -translate-x-[10px]
-                              border-2 border-[#FF4500] transition-all duration-300"
-                    style={{
-                      boxShadow: useTransform(
-                        dotGlow,
-                        [0, 1],
-                        ['0 0 0px rgba(255,69,0,0)', '0 0 30px rgba(255,69,0,0.8)']
-                      ),
-                      borderColor: useTransform(
-                        dotGlow,
-                        [0, 1],
-                        ['rgba(255,69,0,0.5)', 'rgba(255,69,0,1)']
-                      )
-                    }}
-                  >
-                    <motion.div 
-                      className="absolute inset-[-4px] rounded-full"
-                      style={{
-                        background: "linear-gradient(to right, #FF4500, #FF8C00)",
-                        opacity: dotGlow
-                      }}
-                    />
-                  </motion.div>
-
-                  {/* Content card with orange accents restored */}
-                  <div className={`ml-12 md:ml-0 md:w-[calc(50%-32px)] ${
-                    index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto md:pl-32'
-                  }`}>
-                    <motion.div
-                      className="bg-[#1a1a1a] rounded-xl p-8 border border-white/10 relative overflow-hidden
-                                backdrop-blur-sm hover:bg-[#222] transition-all duration-300 group min-h-[250px]
-                                shadow-[0_0_25px_-5px_rgba(255,255,255,0.05)]"
-                      style={{
-                        y: springY,
-                        x: useTransform(itemProgress, 
-                          [0, 1], 
-                          [index % 2 === 0 ? -30 : 30, 0]
-                        )
-                      }}
-                      whileHover={{ 
-                        scale: 1.03,
-                        boxShadow: "0 20px 40px -20px rgba(255,255,255,0.1)"
-                      }}
-                    >
-                      {/* Year badge with orange styling */}
-                      <div className="flex items-center gap-4 mb-6">
-                        <span className="px-4 py-2 rounded-full text-sm bg-[#FF4500]/10 text-[#FF4500] font-medium
-                                       border border-[#FF4500]/20">
-                          {achievement.year}
-                        </span>
-                        <div className="h-[1px] flex-1 bg-gradient-to-r from-[#FF4500]/20 to-transparent" />
-                      </div>
-                      
-                      <h3 className="text-2xl font-semibold mb-4 text-white">
-                        {achievement.title}
-                      </h3>
-                      
-                      <p className="text-gray-300 text-base leading-relaxed mb-6">
-                        {achievement.description}
-                      </p>
-
-                      {/* Orange hover effects restored */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-[#FF4500]/10 to-transparent opacity-0 
-                                  group-hover:opacity-100 transition-opacity duration-500"
-                      />
-                      
-                      {/* Orange progress line */}
-                      <motion.div
-                        className="absolute bottom-0 left-0 right-0 h-[2px]"
-                        initial={{ scaleX: 0 }}
-                        whileHover={{ scaleX: 1 }}
-                        transition={{ duration: 0.5 }}
-                        style={{
-                          background: "linear-gradient(to right, #FF4500, #FF8C00)",
-                          originX: index % 2 === 0 ? 0 : 1
-                        }}
-                      />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {achievements.map((achievement, index) => (
+              <TimelineItem 
+                key={index} 
+                achievement={achievement} 
+                index={index} 
+              />
+            ))}
           </div>
         </div>
       </div>

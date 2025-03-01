@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import Lenis from '@studio-freight/lenis';
 import Creations from '../components/creations';
-import Capabilities from '../components/capabilities';
+import Capabilities from '../components/Capabalities';
 import Footer from '../components/footer';
 import Achievement from '../components/achievements';
 import Link from 'next/link';
@@ -96,7 +96,7 @@ const HomePage = () => {
         <nav className="fixed top-0 w-full z-50 px-4 md:px-12 py-4 md:py-8">
           <div className="max-w-[1400px] mx-auto flex justify-between items-center">
             {/* Logo/Name */}
-            <a href="/" className="text-sm md:text-lg tracking-[0.2em] font-medium opacity-90 hover:opacity-100 transition-opacity">
+            <a href="/Homme" className="text-sm md:text-lg tracking-[0.2em] font-medium opacity-90 hover:opacity-100 transition-opacity">
               KARTHICK GANESH
             </a>
 
